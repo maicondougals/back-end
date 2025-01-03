@@ -1,0 +1,23 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "Back-end basico",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maicondougals/back-end.git"
+  },
+  "author": "Maicon Douglas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maicondougals/back-end/issues"
+  },
+  "homepage": "https://github.com/maicondougals/back-end#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
