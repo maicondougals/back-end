@@ -1,9 +1,10 @@
-require('dotenv').config() //importação das configurações dotenv
+import 'dotenv/config'; //importação das configurações dotenv
 
-const express = require("express") //importação do framework express
+import express from 'express' //importação do framework express
 const app = express() 
 
-const { run } = require('./db.js')
+import run from './db.js' //importando função de conexão com mongodb
+
 
 app.get("/", (req, res) => {  //rota express com método GET(extração de informação)
     res.send("Página inicial") 
