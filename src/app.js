@@ -3,31 +3,29 @@ import 'dotenv/config'; //importação das configurações dotenv
 import express from 'express' //importação do framework express
 const app = express() 
 
-import run from './db.js' //importando função de conexão com mongodb
 
-
-app.get("/", (req, res) => {  //rota express com método GET(extração de informação)
-    res.send("Página inicial") 
-})
-
+import router from './Routes/public.js'
 
 app.use(express.json()); // para analisar corpos de solicitação JSON
-app.use(express.urlencoded({ extended: true })); // para analisar corpos de solicitação codificados em url
+
+
+
+app.use('/', router)
+
 
 
 const PORT = process.env.PORT || 3000 // predefinindo a porta onde o endereço iniciará. "constane PORT = acessa variável PORT localizada em .env  OU 3000 "
 
-async function iniciarServidor() {
-    try {
-      const db = await run(); // Conecta ao banco de dados
-  
-  
-      app.listen(PORT, () => {
-        console.log(`Servidor funcionando na porta ${PORT}`);
-      });
-    } catch (err) {
-      console.error('Erro ao iniciar o servidor:', err);
-    }
-  }
-  
-  iniciarServidor()
+import connectToDatabase from './db.js'
+
+connectToDatabase()
+  .then((mongoose) => { // Recebe a instância do Mongoose (se você retornou no db.js)
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando na porta ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Erro ao iniciar a aplicação:', error);
+  });
+
