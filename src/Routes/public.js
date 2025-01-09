@@ -3,6 +3,7 @@
 
 import express from 'express'
 import User from '../Models/User.js'
+import { validarNome } from "../middleware/validarNome.js";
 const router = express.Router()
 
 
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
     res.status(200).json()
 })
 //----------------------------------------------
-router.post('/users', async (req, res) => {
+router.post('/users',validarNome, async (req, res) => {
     try {
     // 4. Instanciar e salvar o usuário
     const user = new User(req.body);

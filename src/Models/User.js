@@ -5,14 +5,14 @@ import mongoose, { mongo, Mongoose, Schema } from "mongoose";
 const userSchema = new mongoose.Schema({
     name: {
         type: String, //define o tipo: string, number...
-        required: true, //torna o campo obrigatório
-        unique: true//: Garante que não haverá dois usuários com o mesmo email.
+        //required: true, //torna o campo obrigatório
+        //unique: true//: Garante que não haverá dois usuários com o mesmo email.
         // lowercase: true: Converte o email para minúsculas antes de salvar.
         // timestamps: true: Facilita o rastreamento de quando os documentos foram criados e atualizados.
     }
 })
 
-export default mongoose.model('User', userSchema)
+export default mongoose.model('User', userSchema) //a exportação do mongoose.model deve receber 2 parametros, sendo eles: o nome da coleção no banco de dados e o nome do schema
 //Cria o Model User baseado no UserSchema.
 //O Mongoose, por padrão, vai procurar por uma coleção chamada "users" (plural e minúsculo)
-// no seu banco de dados.
+// no seu banco de dados 
