@@ -29,6 +29,7 @@ router.post('/users', validaEmail,validaNome, async (req, res) => {
         res.status(500).send('Erro ao criar usuário'); // Resposta de erro genérica
     }
 });
+
 //----------------------------------------------
 router.post('/cadastro', (req, res) => {
     const user = req.body

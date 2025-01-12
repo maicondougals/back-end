@@ -6,16 +6,16 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String, //define o tipo: string, number...
         required: true, // Campo obrigatório
-        //minlength: 3, // Tamanho mínimo
-        //required: true, //torna o campo obrigatório
-        //unique: true// Garante que não haverá dois usuários 
+        //minlength: 3, Tamanho mínimo
+        //required: true, torna o campo obrigatório
+        //unique: true Garante que não haverá dois usuários 
         // lowercase: true: Converte o email para minúsculas antes de salvar.
         // timestamps: true: Facilita o rastreamento de quando os documentos foram criados e atualizados.
     },
     mail: {
         type: String,
         required: true,
-        //unique: true,
+        unique: true,
         lowercase: true,
         validate: {
             validator: function(v) {
