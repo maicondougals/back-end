@@ -2,12 +2,19 @@ import 'dotenv/config'; //importação das configurações dotenv
 
 import express from 'express' //importação do framework express
 const app = express() 
+import cors from 'cors'
 
 
 import router from './Routes/public.js'
 
 app.use(express.json()); // para analisar corpos de solicitação JSON
 
+
+// Configuração do CORS (libera para qualquer site)
+const corsOptions = {
+  origin: '*' 
+};
+app.use(cors(corsOptions));
 
 
 app.use('/', router)

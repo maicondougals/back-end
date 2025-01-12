@@ -3,7 +3,8 @@
 
 import express from 'express'
 import User from '../Models/User.js'
-import { validarNome } from "../middleware/validarNome.js";
+import { validaEmail } from "../middleware/validaEmail.js";
+import { validaNome } from '../middleware/validaNome.js';
 const router = express.Router()
 
 
@@ -17,23 +18,16 @@ router.get('/', (req, res) => {
     res.status(200).json()
 })
 //----------------------------------------------
-router.post('/users',validarNome, async (req, res) => {
+router.post('/users', validaEmail,validaNome, async (req, res) => {
     try {
-    // 4. Instanciar e salvar o usuário
-    const user = new User(req.body);
-    await user.save();
-    res.status(201).send({ user }); // 6. Resposta de sucesso
+        
+        const user = new User(req.body);//Instanciar usuário
+        await user.save();//salvar usuário ao banco de dados
+        res.status(201).send({ user }); // 6. Resposta de sucesso
     } catch (error) {
-
-
-
-    // Tratamento de erros mais específico
-    if (error.code === 11000) {
-    res.status(400).send({ error: 'Email já cadastrado!' });
-    } else {
-    res.status(500).send({ error: 'Erro ao criar usuário.' });
+        console.error('Erro ao criar usuário:', error); // Log de erro detalhado
+        res.status(500).send('Erro ao criar usuário'); // Resposta de erro genérica
     }
-}
 });
 //----------------------------------------------
 router.post('/cadastro', (req, res) => {
