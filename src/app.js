@@ -4,8 +4,8 @@ import express from 'express' //importação do framework express
 const app = express() 
 import cors from 'cors'
 
-
-import router from './Routes/public.js'
+import login from './Routes/login.js';
+import cadastro from './Routes/cadastro.js'
 
 app.use(express.json()); // para analisar corpos de solicitação JSON
 
@@ -17,7 +17,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-app.use('/', router)
+app.use('/', cadastro)
+app.use('/', login)
+
 
 
 
